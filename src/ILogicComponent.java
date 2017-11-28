@@ -1,3 +1,3 @@
 public interface ILogicComponent {
-    public void update();
+    void update();
 }

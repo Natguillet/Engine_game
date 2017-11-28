@@ -1,7 +1,7 @@
 abstract class Component {
-    public String name;
+    public Entity entity;
 
-    public Component(String name) {
-        this.name = name;
+    public Component(Entity entity) {
+        this.entity = entity;
     }
 }
