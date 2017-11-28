@@ -1,16 +1,14 @@
-import java.util.ArrayList;
-
 public class Main {
 
     public static void main(String[] args) {
-        Test test = new Test("test");
-        Entity entity = new Entity();
-        entity.getComponents().add(test);
+        ISystem[] systems = {new SystemLogic()};
+        Entity test = new Entity();
+        Entity[] entities = {test};
+
+        entities[0].getComponents().add(new HelloWorldComponent(test));
         while(true){ // Loop game
-            for (Component component: entity.getComponents()) {
-                if(component instanceof ILogicComponent){
-                    ((ILogicComponent) component).update();
-                }
+            for (ISystem system: systems) {
+                system.iterate(entities);
             }
         }
     }
