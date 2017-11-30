@@ -1,3 +1,5 @@
+package main;
+
 import java.lang.System;
 
 public class HelloWorldComponent extends Component implements ILogicComponent {
