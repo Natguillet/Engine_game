@@ -1,3 +1,5 @@
+package main;
+
 public class SystemLogic implements ISystem {
     @Override
     public void iterate(Entity[] entites) {

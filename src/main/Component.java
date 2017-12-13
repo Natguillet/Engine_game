@@ -1,3 +1,5 @@
+package main;
+
 abstract class Component {
     public Entity entity;
 
