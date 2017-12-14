@@ -1,5 +1,13 @@
 package main;
 
+
+
 public interface ILogicComponent {
-    void update();
+     default void update(){
+     System.out.println("default");
+    }
+
+
+
+
 }

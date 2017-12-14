@@ -1,6 +1,8 @@
 package main.entityFolder;
 
+import javafx.event.EventHandler;
 import javafx.scene.Group;
+import javafx.scene.input.MouseEvent;
 import main.Graphic.GraphicBoard;
 import main.Graphic.GraphicCase;
 
@@ -27,6 +29,7 @@ public class Case extends main.Entity{
        this.numberGameCase = numberGameCase;
        graphic = new GraphicCase(posx, posy, caseHeight, caseWidth , board);
         board.getChildren().add(graphic);
+
     }
 
     public Case(int numberCasex, int numberCasey, boolean playable, int numberGameCase, Group board){
@@ -34,7 +37,7 @@ public class Case extends main.Entity{
         this.numberCaseY = numberCasey;
         this.playable = playable;
         this.numberGameCase = numberGameCase;
-        graphic = new GraphicCase(5, 5,10,10, board );
+        graphic = new GraphicCase(5, 5,10,10, board);
         board.getChildren().add(graphic);
     }
 }

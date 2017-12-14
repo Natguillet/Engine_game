@@ -1,11 +1,14 @@
 package main.Graphic;
 
+import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Parent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import main.ILogicComponent;
 
-public class GraphicCase extends Parent{
+public class GraphicCase extends Parent implements ILogicComponent{
 
     int posX;
     int posY;
@@ -29,6 +32,28 @@ public class GraphicCase extends Parent{
         caseBack.setX(posX);
         caseBack.setY(posY);
         this.getChildren().add(caseBack);
+
+        this.setOnMousePressed(new EventHandler<MouseEvent>(){
+            public void handle(MouseEvent me){
+                appuyer();
+            }
+        });
+        this.setOnMouseReleased(new EventHandler<MouseEvent>(){
+            public void handle(MouseEvent me){
+                relacher();
+            }
+        });
+    }
+
+    public void appuyer(){
+        caseBack.setFill(Color.RED);
+        //ajout d'un pion
+
+    }
+
+    public void relacher(){
+        caseBack.setFill(Color.GREY);
+
     }
 
     public void ChangeOrigin(int x , int y){

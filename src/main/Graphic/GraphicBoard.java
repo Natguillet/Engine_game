@@ -5,8 +5,9 @@ import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import main.ILogicComponent;
 
-public class GraphicBoard extends Parent {
+public class GraphicBoard extends Parent implements ILogicComponent{
 
     Rectangle fondBoard;
     Color color;
@@ -50,5 +51,10 @@ public class GraphicBoard extends Parent {
     public void ChangeColor(Color color){
         this.color = color;
         fondBoard.setFill(color);
+    }
+
+    @Override
+    public void update(){
+
     }
 }
