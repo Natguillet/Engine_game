@@ -1,7 +1,6 @@
 package main.Graphic;
 
 import javafx.event.EventHandler;
-import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
@@ -18,7 +17,7 @@ public class GraphicCase extends Parent implements ILogicComponent{
     Color color;
 
 
-    public GraphicCase(int x , int y, int caseHeight, int caseWidth, Group root){
+    public GraphicCase(int x , int y, int caseHeight, int caseWidth){
         this.posX = x;
         this.posY = y;
         this.caseHeight = caseHeight;

@@ -1,7 +1,5 @@
 package main.Graphic;
 
-
-import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -16,7 +14,7 @@ public class GraphicBoard extends Parent implements ILogicComponent{
     int originX;
     int originY;
 
-    public GraphicBoard(int x , int y, Group root){
+    public GraphicBoard(int x , int y){
         fondBoard = new Rectangle();
         color = Color.BLACK;
         Width = x;

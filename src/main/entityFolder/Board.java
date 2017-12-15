@@ -24,7 +24,7 @@ public class Board extends main.Entity {
         this.width = width;
 
         //Initialisation de la partie graphique
-        graphic = new GraphicBoard(width, height, root);
+        graphic = new GraphicBoard(width, height);
         root.getChildren().add(graphic);
 
         //Initialisation of board
