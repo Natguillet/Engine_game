@@ -40,4 +40,8 @@ public class Case extends main.Entity{
         graphic = new GraphicCase(5, 5,10,10);
         board.getChildren().add(graphic);
     }
+
+    public int getNumberCase() {
+        return numberGameCase;
+    }
 }

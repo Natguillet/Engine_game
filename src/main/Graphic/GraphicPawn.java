@@ -24,8 +24,6 @@ public class GraphicPawn extends Parent implements ILogicComponent {
         pawnShape.setCenterX(centerX);
         pawnShape.setCenterY(centerY);
 
-        // Add drag and drop events ?
-
         this.getChildren().add(pawnShape);
     }
 

@@ -44,6 +44,22 @@ public class GraphicCase extends Parent implements ILogicComponent{
         });
     }
 
+    public int getPosX() {
+        return posX;
+    }
+
+    public int getPosY() {
+        return posY;
+    }
+
+    public int getHeight() {
+        return caseHeight;
+    }
+
+    public int getWidth() {
+        return caseWidth;
+    }
+
     public void appuyer(){
         caseBack.setFill(Color.RED);
         //ajout d'un pion
