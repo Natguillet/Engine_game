@@ -28,7 +28,7 @@ public class Main extends Application{
 
         List<Entity> entities = new ArrayList<>();
 
-        // Instantiate Enity Board and this component
+        // Instantiate Entity Board and this component
         Board board = new Board("board");
         GraphicBoardComponent graphicBoardComponent = new GraphicBoardComponent(board, 600,600);
         graphicBoardComponent.ChangeColor(Color.BLUE);
