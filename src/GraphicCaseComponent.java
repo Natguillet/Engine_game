@@ -1,6 +1,9 @@
+import javafx.event.EventHandler;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
+
+import java.awt.event.MouseEvent;
 
 public class GraphicCaseComponent extends Component implements IGraphicComponent {
 
@@ -26,6 +29,11 @@ public class GraphicCaseComponent extends Component implements IGraphicComponent
 
         caseBack.setX(posX);
         caseBack.setY(posY);
+    }
+
+    @Override
+    public void onClick() {
+        caseBack.setFill(Color.RED);
     }
 
     @Override

@@ -1,3 +1,5 @@
+import javafx.event.EventHandler;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import java.util.List;
 
@@ -20,12 +22,15 @@ public class SystemGraphic implements ISystem{
         for (Entity entity: entites) {
             for (Component component: entity.getComponents()) {
                 if(component instanceof IGraphicComponent){
-                    System.out.println(component);
+                    ((IGraphicComponent) component).getFigure().setOnMousePressed(new EventHandler<MouseEvent>(){
+                        public void handle(MouseEvent me){
+                            ((IGraphicComponent) component).onClick();
+                        }
+                    });
                     stack.getChildren().add(((IGraphicComponent) component).getFigure());
                 }
             }
         }
-        System.out.println(stack.getChildren());
         return stack;
     }
 }
