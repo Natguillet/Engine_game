@@ -1,3 +1,7 @@
+import javafx.scene.layout.StackPane;
+
+import java.util.List;
+
 public interface ISystem {
-    void iterate(Entity[] entites);
+    void iterate(List<Entity> entites);
 }
