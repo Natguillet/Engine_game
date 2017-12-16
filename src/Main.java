@@ -2,9 +2,12 @@ import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -56,6 +59,12 @@ public class Main extends Application{
         board.getComponents().add(graphicBoardComponent);
         entities.add(board);
 
+        GraphicPointComponent points = new GraphicPointComponent(board, 5,5, 0);
+        board.getComponents().add(points);
+
+        GraphicPointComponent points2 = new GraphicPointComponent(board, 635,5, 0);
+        board.getComponents().add(points2);
+
         // Instantiate Cases and their graphic components
         int caseMinDim = java.lang.Math.min(caseHeight, caseWidth);
         int pawnMargin = caseMinDim / 20; // 5 percent of the case's smaller dimension
@@ -92,7 +101,9 @@ public class Main extends Application{
         ISystem[] systems = {systemLogic, systemGraphic, systemInput};
 
         // Initialize all graphic components
-        root.getChildren().addAll(systemGraphic.init(entities).getChildren());
+            root.getChildren().addAll(systemGraphic.init(entities).getChildren());
+
+
 
         new AnimationTimer()
         {
