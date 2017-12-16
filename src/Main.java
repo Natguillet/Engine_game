@@ -52,6 +52,10 @@ public class Main extends Application{
             posX = posX + caseWidth;
         }
 
+        // Instantiate GameOver
+        GameOver gameOver = new GameOver("game over");
+        gameOver.getComponents().add(new GraphicGameOverComponent(gameOver, 350,350,200,700));
+
         SystemGraphic systemGraphic = new SystemGraphic();
         ISystem[] systems = {new SystemLogic(), systemGraphic};
 
