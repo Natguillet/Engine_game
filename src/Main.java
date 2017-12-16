@@ -20,8 +20,29 @@ public class Main extends Application{
     public void start(Stage primaryStage) throws Exception {
         primaryStage.setTitle("Tic-Tac-Toe");
 
+        // Game data
+        int wholeBoardWidth = 700;
+        int wholeBoardHeight = 700;
+        int boardMargin = 50;
+        int gameBoardWidth = wholeBoardWidth - boardMargin * 2;
+        int gameBoardHeight = wholeBoardHeight - boardMargin * 2;
+        int nbCaseX = 3;
+        int nbCaseY = 3;
+
+        // Board rescaling
+        int caseHeight = gameBoardHeight / nbCaseY;
+        int caseWidth = gameBoardWidth / nbCaseX;
+        if(gameBoardWidth % nbCaseX != 0) {
+            gameBoardWidth = caseWidth * nbCaseX;
+            wholeBoardWidth = gameBoardWidth + boardMargin * 2;
+        }
+        if(gameBoardHeight % nbCaseY != 0) {
+            gameBoardHeight = caseHeight * nbCaseY;
+            wholeBoardHeight = gameBoardHeight + boardMargin * 2;
+        }
+
         Group root = new Group();
-        Scene scene = new Scene(root, 700,700, Color.LIGHTBLUE);
+        Scene scene = new Scene(root, wholeBoardWidth, wholeBoardHeight, Color.LIGHTBLUE);
         primaryStage.setScene(scene);
 
         final long startNanoTome = System.nanoTime();
@@ -30,19 +51,17 @@ public class Main extends Application{
 
         // Instantiate Entity Board and his graphic component
         Board board = new Board("board");
-        GraphicBoardComponent graphicBoardComponent = new GraphicBoardComponent(board, 600,600);
+        GraphicBoardComponent graphicBoardComponent = new GraphicBoardComponent(board, gameBoardWidth, gameBoardHeight);
         graphicBoardComponent.ChangeColor(Color.BLUE);
         board.getComponents().add(graphicBoardComponent);
         entities.add(board);
 
         // Instantiate Cases and their graphic components
-        int nbCaseX = 3;
-        int nbCaseY = 3;
-        int caseHeight = 600/nbCaseY;
-        int caseWidth = 600/nbCaseX;
-        int posX = 50;
+        int caseMinDim = java.lang.Math.min(caseHeight, caseWidth);
+        int pawnMargin = caseMinDim / 20; // 5 percent of the case's smaller dimension
+        int posX = boardMargin;
         for(int i = 0; i < nbCaseX; i++){
-            int posY = 50;
+            int posY = boardMargin;
             for(int j = 0; j < nbCaseY; j++){
                 Case aCase = new Case("case_" + i + "_" + j, i, j);
                 aCase.getComponents().add(new GraphicCaseComponent(aCase, posX, posY,caseHeight,caseWidth));
@@ -51,7 +70,7 @@ public class Main extends Application{
 
                 // instantiate the pawn
                 Pawn aPawn = new Pawn("pawn_" + i + "_" + j, aCase);
-                aPawn.getComponents().add(new GraphicPawnComponent(aPawn, posX + caseWidth / 2, posY + caseHeight / 2, (java.lang.Math.min(caseHeight, caseWidth)) / 2 - 10, Color.TRANSPARENT));
+                aPawn.getComponents().add(new GraphicPawnComponent(aPawn, posX + caseWidth / 2, posY + caseHeight / 2, caseMinDim / 2 - pawnMargin, Color.TRANSPARENT));
                 // TO DO: InputPawnComponent?
                 aCase.getChildren().add(aPawn);
                 entities.add(aPawn);
