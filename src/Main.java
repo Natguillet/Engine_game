@@ -35,6 +35,13 @@ public class Main extends Application{
         board.getComponents().add(graphicBoardComponent);
         entities.add(board);
 
+        //Instantiate GameController
+
+        GameController gameController = new GameController("game controller");
+        GameControllerComponent gameControllerComponent = new GameControllerComponent(gameController);
+        gameController.getComponents().add(gameControllerComponent);
+        entities.add(gameController);
+
         // Instantiate Cases
         int nbCaseX = 3;
         int nbCaseY = 3;
