@@ -62,6 +62,23 @@ public class Case extends Entity {
         return component;
     }
 
+    public Pawn getPawn() {
+
+        Pawn pawn = null;
+        boolean found = false;
+        Iterator<Entity> entityIt = getChildren().iterator();
+
+        while(entityIt.hasNext() && !found) {
+            Entity tmp = entityIt.next();
+            if(tmp instanceof Pawn) {
+                pawn = (Pawn) tmp;
+                found = true;
+            }
+        }
+
+        return pawn;
+    }
+
     public int getHeight() {
         return getGraphicComponent().getCaseHeight();
     }

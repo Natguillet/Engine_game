@@ -11,7 +11,6 @@ public class PlayerComponent extends Component{
     private int points = 0;
     private int name;
     private Color color;
-    private Pawn pawn;
     private static int number = 0;
 
 
@@ -29,14 +28,6 @@ public class PlayerComponent extends Component{
 
     public void setName(int name) {
         this.name = name;
-    }
-
-    public Pawn getPawn() {
-        return pawn;
-    }
-
-    public void setPawn(Pawn pawn) {
-        this.pawn = pawn;
     }
 
     public Color getColor() {

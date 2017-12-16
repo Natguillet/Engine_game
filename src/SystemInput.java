@@ -20,7 +20,7 @@ public class SystemInput implements ISystem {
                 if(component instanceof IInputComponent){
                     if(((IInputComponent) component).isClicked()) {
                         if(entity instanceof Case) {
-                            ((Case) entity).getGraphicComponent().ChangeColor(getPlayerPawnColor());
+                            ((Case) entity).getPawn().getGraphicComponent().ChangeColor(getPlayerPawnColor());
                         }
                     }
                 }
