@@ -2,8 +2,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 
-import java.util.Iterator;
-
 
 public class GraphicCaseComponent extends Component implements IGraphicComponent {
 
@@ -36,9 +34,8 @@ public class GraphicCaseComponent extends Component implements IGraphicComponent
     @Override
     public void onClick() {
         System.out.println("Case click");
-        //caseBack.setFill(Color.RED);
 
-        ((Case) entity).getInputComponent().Click();
+        ((Case) entity).getLogicComponent().setSpace();
     }
 
     @Override

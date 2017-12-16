@@ -14,6 +14,7 @@ import java.util.List;
 public class Main extends Application{
 
     List<Entity> entities;
+    List<Pawn> paws;
 
     public static void main(String[] args) {
         launch(args);
@@ -51,6 +52,7 @@ public class Main extends Application{
         final long startNanoTome = System.nanoTime();
 
         entities = new ArrayList<>();
+        paws = new ArrayList<>();
 
         // Instantiate Entity Board and his graphic component
         Board board = new Board("board");
@@ -75,13 +77,15 @@ public class Main extends Application{
                 Case aCase = new Case("case_" + i + "_" + j, i, j);
                 aCase.getComponents().add(new GraphicCaseComponent(aCase, posX, posY,caseHeight,caseWidth));
                 aCase.getComponents().add(new InputCaseComponent(aCase));
-                entities.add(aCase);
 
                 // instantiate the pawn
                 Pawn aPawn = new Pawn("pawn_" + i + "_" + j, aCase);
+                aCase.getComponents().add(new GameCaseComponent(aCase, aPawn));
+                entities.add(aCase);
                 aPawn.getComponents().add(new GraphicPawnComponent(aPawn, posX + caseWidth / 2, posY + caseHeight / 2, caseMinDim / 2 - pawnMargin, Color.TRANSPARENT));
                 // TO DO: InputPawnComponent?
                 aCase.getChildren().add(aPawn);
+                paws.add(aPawn);
                 entities.add(aPawn);
 
                 posY += caseHeight;
@@ -94,11 +98,18 @@ public class Main extends Application{
         PlayerComponent Player1 = new PlayerComponent(playerManager, Color.BLUE);
         PlayerComponent Player2 = new PlayerComponent(playerManager, Color.GREEN);
 
+        //Intantiate gameCOntroller
+        GameController gameController = new GameController("game controller");
+        GameControllerComponent gameControllerComponent = new GameControllerComponent(gameController, paws);
+        gameController.getComponents().add(gameControllerComponent);
+        gameControllerComponent.awake();
+        entities.add(gameController);
+
         SystemLogic systemLogic = new SystemLogic();
         SystemGraphic systemGraphic = new SystemGraphic();
-        SystemInput systemInput = new SystemInput(playerManager.componentNumber());
+        //SystemInput systemInput = new SystemInput(gameController);
 
-        ISystem[] systems = {systemLogic, systemGraphic, systemInput};
+        ISystem[] systems = {systemLogic, systemGraphic};
 
         // Initialize all graphic components
             root.getChildren().addAll(systemGraphic.init(entities).getChildren());
