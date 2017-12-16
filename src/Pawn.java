@@ -11,6 +11,12 @@ public class Pawn extends Entity {
 
     public GraphicPawnComponent getGraphicComponent() {
 
+        for(Component it : getComponents()) {
+            if(it instanceof GraphicPawnComponent) {
+                return (GraphicPawnComponent) it;
+            }
+        }
+        /*
         GraphicPawnComponent component = null;
         boolean found = false;
         Iterator<Component> componentIt = getComponents().iterator();
@@ -24,6 +30,8 @@ public class Pawn extends Entity {
         }
 
         return component;
+        */
+        return null;
     }
 
     public Case getParentCase() {
