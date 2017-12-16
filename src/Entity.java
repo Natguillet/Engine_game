@@ -13,6 +13,10 @@ public class Entity {
         return children;
     }
 
+    public int componentNumber(){
+        return components.size();
+    }
+
     public ArrayList<Component> getComponents() {
         return components;
     }

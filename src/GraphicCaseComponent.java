@@ -48,6 +48,14 @@ public class GraphicCaseComponent extends Component implements IGraphicComponent
         }
     }
 
+
+
+    @Override
+    public void onClickRelease(){
+        caseBack.setFill(Color.WHITE);
+    }
+
+
     @Override
     public Shape getFigure() {
         return caseBack;
