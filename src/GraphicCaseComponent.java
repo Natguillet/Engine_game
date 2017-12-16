@@ -11,14 +11,16 @@ public class GraphicCaseComponent extends Component implements IGraphicComponent
     int caseWidth;
     Rectangle caseBack;
     Color color;
+    boolean isClickable;
 
-    public GraphicCaseComponent(Entity entity, int x, int y, int caseHeight, int caseWidth) {
+    public GraphicCaseComponent(Entity entity, int x, int y, int caseHeight, int caseWidth, boolean isClickable) {
         super(entity);
         this.posX = x;
         this.posY = y;
         this.caseHeight = caseHeight;
         this.caseWidth = caseWidth;
         this.color = Color.WHITE;
+        this.isClickable = isClickable;
 
         caseBack = new Rectangle();
         caseBack.setWidth(caseWidth);
@@ -33,9 +35,9 @@ public class GraphicCaseComponent extends Component implements IGraphicComponent
 
     @Override
     public void onClick() {
-        System.out.println("Case click");
-
-        ((Case) entity).getLogicComponent().setSpace();
+        if(isClickable) {
+            ((Case) entity).getLogicComponent().setSpace();
+        }
     }
 
     @Override

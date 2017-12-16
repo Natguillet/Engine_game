@@ -10,7 +10,6 @@ public interface IGraphicComponent {
         return t;
     };
     default void onClick() {
-        System.out.println("Default click");
     };
 
 

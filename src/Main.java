@@ -72,7 +72,7 @@ public class Main extends Application{
             int posY = boardMargin;
             for(int j = 0; j < nbCaseY; j++){
                 Case aCase = new Case("case_" + i + "_" + j, i, j);
-                aCase.getComponents().add(new GraphicCaseComponent(aCase, posX, posY,caseHeight,caseWidth));
+                aCase.getComponents().add(new GraphicCaseComponent(aCase, posX, posY,caseHeight,caseWidth,true));
                 aCase.getComponents().add(new InputCaseComponent(aCase));
 
                 // instantiate the pawn
