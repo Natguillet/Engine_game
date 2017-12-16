@@ -51,7 +51,7 @@ public class Main extends Application{
 
                 // instantiate the pawn
                 Pawn aPawn = new Pawn("pawn_" + i + "_" + j, aCase);
-                aPawn.getComponents().add(new GraphicPawnComponent(aPawn, aCase.getPosX() + aCase.getHeight() / 2, aCase.getPosY() + aCase.getWidth() / 2, aCase.getCaseMinDimension() / 2 - 1, Color.TRANSPARENT));
+                aPawn.getComponents().add(new GraphicPawnComponent(aPawn, aCase.getPosX() + aCase.getWidth() / 2, aCase.getPosY() + aCase.getHeight() / 2, (aCase.getCaseMinDimension()) / 2 - 1, Color.TRANSPARENT));
                 // TO DO: InputPawnComponent?
                 aCase.getChildren().add(aPawn);
                 entities.add(aPawn);
@@ -68,7 +68,7 @@ public class Main extends Application{
 
         SystemLogic systemLogic = new SystemLogic();
         SystemGraphic systemGraphic = new SystemGraphic();
-        SystemInput systemInput = new SystemInput(playerManager.componentNumber()); // number of players to be handled by the logic system
+        SystemInput systemInput = new SystemInput(playerManager.componentNumber());
 
         ISystem[] systems = {systemLogic, systemGraphic, systemInput};
 
