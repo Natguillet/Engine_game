@@ -51,7 +51,7 @@ public class Main extends Application{
 
                 // instantiate the pawn
                 Pawn aPawn = new Pawn("pawn_" + i + "_" + j, aCase);
-                aPawn.getComponents().add(new GraphicPawnComponent(aPawn, aCase.getPosX() + aCase.getWidth() / 2, aCase.getPosY() + aCase.getHeight() / 2, (aCase.getCaseMinDimension()) / 2 - 1, Color.TRANSPARENT));
+                aPawn.getComponents().add(new GraphicPawnComponent(aPawn, posX + aCase.getWidth() / 2, posY + aCase.getHeight() / 2, (aCase.getCaseMinDimension()) / 2 - 1, Color.TRANSPARENT));
                 // TO DO: InputPawnComponent?
                 aCase.getChildren().add(aPawn);
                 entities.add(aPawn);
