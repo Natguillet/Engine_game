@@ -1,5 +1,6 @@
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Shape;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 
@@ -14,28 +15,33 @@ public class GraphicGameOverComponent extends Component implements IGraphicCompo
 
     Text text = new Text();
 
-    public GraphicGameOverComponent(Entity entity, int posX, int posY, int height, int width) {
+    public GraphicGameOverComponent(Entity entity, int posX, int posY) {
         super(entity);
         this.posX = posX;
         this.posY = posY;
-        this.height = height;
-        this.width = width;
         this.color = Color.BLACK;
-        text.setText("Win Text");
+
+        text.setX(posX);
+        text.setY(posY);
+        text.setText("");
+        text.setFont(Font.font ("Verdana", 80));
+        text.setFill(color);
 
         if(!activate) text.setOpacity(0);
     }
 
-    public void setText(Text text) {
-        this.text = text;
+    public void setText(String text) {
+        this.text.setText(text);
     }
 
-    public Text getText() {
+    public Text getTextGameOver() {
         return text;
     }
 
-    public void SetActive(boolean activate) {
+    public void setActive(boolean activate) {
+        this.activate = activate;
         if(!activate) text.setOpacity(0);
+        else text.setOpacity(100);
     }
 
     @Override

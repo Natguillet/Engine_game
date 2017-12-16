@@ -18,22 +18,6 @@ public class Case extends Entity {
                 return (GraphicCaseComponent) it;
             }
         }
-
-        /*
-        GraphicCaseComponent component = null;
-        boolean found = false;
-        Iterator<Component> componentIt = getComponents().iterator();
-
-        while(componentIt.hasNext() && !found) {
-            Component tmp = componentIt.next();
-            if(tmp instanceof GraphicCaseComponent) {
-                component = (GraphicCaseComponent) tmp;
-                found = true;
-            }
-        }
-
-        return component;
-        */
         return null;
     }
 

@@ -36,15 +36,12 @@ public class SystemGraphic implements ISystem{
                             ((IGraphicComponent) component).onClickRelease();
                         }
                     });
-
-
-                        stack.getChildren().add(((IGraphicComponent) component).getFigure());
-                        stack.getChildren().add(((IGraphicComponent) component).getText());
-
-
+                    stack.getChildren().add(((IGraphicComponent) component).getFigure());
+                    stack.getChildren().add(((IGraphicComponent) component).getText());
                 }
             }
         }
+        System.out.println(stack.getChildren());
         return stack;
     }
 }

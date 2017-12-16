@@ -92,16 +92,17 @@ public class Main extends Application{
 
         // Instantiate GameOver
         GameOver gameOver = new GameOver("game over");
-        gameOver.getComponents().add(new GraphicGameOverComponent(gameOver, 350,350,200,700));
+        gameOver.getComponents().add(new GraphicGameOverComponent(gameOver, 150,360));
+        entities.add(gameOver);
 
         //Add players
         PlayerManager playerManager = new PlayerManager("playerManager");
         PlayerComponent Player1 = new PlayerComponent(playerManager, Color.BLUE);
         PlayerComponent Player2 = new PlayerComponent(playerManager, Color.GREEN);
 
-        //Intantiate gameCOntroller
+        //Intantiate gameController
         GameController gameController = new GameController("game controller");
-        GameControllerComponent gameControllerComponent = new GameControllerComponent(gameController, paws);
+        GameControllerComponent gameControllerComponent = new GameControllerComponent(gameController, paws, gameOver);
         gameController.getComponents().add(gameControllerComponent);
         gameControllerComponent.awake();
         entities.add(gameController);

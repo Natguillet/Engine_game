@@ -6,10 +6,16 @@ public class GameControllerComponent extends Component implements  ILogicCompone
 
     public List<Pawn> buttonList;
     public Color playerSide;
-    public GameControllerComponent(Entity entity, List<Pawn> buttonList) {
+    public GameOver gameOverPanel;
+    private int moveCount = 0;
+
+    public GameControllerComponent(Entity entity, List<Pawn> buttonList, GameOver gameOverPanel) {
         super(entity);
         this.buttonList = buttonList;
+        this.gameOverPanel = gameOverPanel;
+        gameOverPanel.getGraphicComponent().setActive(false);
         playerSide = Color.RED;
+        moveCount = 0;
     }
 
     @Override
@@ -49,6 +55,12 @@ public class GameControllerComponent extends Component implements  ILogicCompone
         }
         else
         {
+            moveCount ++;
+            if (moveCount >= 9)
+            {
+                gameOverPanel.getGraphicComponent().setActive(true);
+                gameOverPanel.getGraphicComponent().setText("It's a draw!");
+            }
             ChangeSides();
         }
     }
@@ -72,13 +84,20 @@ public class GameControllerComponent extends Component implements  ILogicCompone
             {
                 buttonList.get(i).getParentCase().getGraphicComponent().isClickable=false;
             }
+            gameOverPanel.getGraphicComponent().setActive(true);
+            String winner;
+            if(playerSide == Color.RED) winner = "Red";
+            else winner = "Blue";
+            gameOverPanel.getGraphicComponent().setText(winner + " Wins !");
             System.out.println("game OVER");
     }
 
     public void ChangeSides ()
     {
+        System.out.println("CHange color");
         if (playerSide == Color.RED)
         {
+            System.out.println("test de si rouge");
             playerSide = Color.BLUE;
         }
         else
