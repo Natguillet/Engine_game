@@ -49,7 +49,6 @@ public class GraphicBoardComponent extends Component implements IGraphicComponen
 
     @Override
     public void onClick() {
-        System.out.println("Board click");
     }
 
     @Override

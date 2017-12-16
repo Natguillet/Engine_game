@@ -49,7 +49,6 @@ public class GameControllerComponent extends Component implements  ILogicCompone
         }
         else
         {
-            System.out.println("change sides");
             ChangeSides();
         }
     }
@@ -71,17 +70,15 @@ public class GameControllerComponent extends Component implements  ILogicCompone
     {
             for (int i=0;i< buttonList.size();i++)
             {
-                buttonList.get(i).getParentCase().getInputComponent().caseClicked = true;
+                buttonList.get(i).getParentCase().getGraphicComponent().isClickable=false;
             }
             System.out.println("game OVER");
     }
 
     public void ChangeSides ()
     {
-        System.out.println("CHange color");
         if (playerSide == Color.RED)
         {
-            System.out.println("test de si rouge");
             playerSide = Color.BLUE;
         }
         else
