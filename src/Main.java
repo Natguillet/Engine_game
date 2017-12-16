@@ -11,6 +11,7 @@ import java.util.List;
 public class Main extends Application{
 
     List<Entity> entities;
+    List<Pawn> pawnList;
 
     public static void main(String[] args) {
         launch(args);
@@ -38,7 +39,7 @@ public class Main extends Application{
         //Instantiate GameController
 
         GameController gameController = new GameController("game controller");
-        GameControllerComponent gameControllerComponent = new GameControllerComponent(gameController);
+        GameControllerComponent gameControllerComponent = new GameControllerComponent(gameController,pawnList);
         gameController.getComponents().add(gameControllerComponent);
         entities.add(gameController);
 
@@ -48,6 +49,7 @@ public class Main extends Application{
         int caseHeight = 600/nbCaseY;
         int caseWidth = 600/nbCaseX;
         int posX = 50;
+
         for(int i = 0; i < nbCaseX; i++){
             int posY = 50;
             for(int j = 0; j < nbCaseY; j++){
@@ -58,6 +60,7 @@ public class Main extends Application{
 
                 // instantiate the pawn
                 Pawn aPawn = new Pawn("pawn_" + i + "_" + j, aCase);
+                pawnList.add(aPawn);
                 aPawn.getComponents().add(new GraphicPawnComponent(aPawn, aCase.getPosX() + aCase.getWidth() / 2, aCase.getPosY() + aCase.getHeight() / 2, (aCase.getCaseMinDimension()) / 2 - 1, Color.TRANSPARENT));
                 // TO DO: InputPawnComponent?
                 aCase.getChildren().add(aPawn);

@@ -1,7 +1,10 @@
+import javafx.scene.paint.Color;
+
 public class GameCaseComponent extends Component implements  ILogicComponent {
 
     private GameController gameController;
     private Pawn pawn;
+    public Color playerSide;
 
     public GameCaseComponent(Entity entity) {
         super(entity);
@@ -14,8 +17,9 @@ public class GameCaseComponent extends Component implements  ILogicComponent {
 
     public void setSpace()
     {
-        pawn.getComponents()
+        pawn.getGraphicComponent().color = playerSide;
     }
+
     @Override
     public void update() {
 

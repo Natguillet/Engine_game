@@ -28,6 +28,23 @@ public class Case extends Entity {
         return component;
     }
 
+    public GameCaseComponent getLogicComponent() {
+
+        GameCaseComponent component = null;
+        boolean found = false;
+        Iterator<Component> componentIt = getComponents().iterator();
+
+        while(componentIt.hasNext() && !found) {
+            Component tmp = componentIt.next();
+            if(tmp instanceof GameCaseComponent) {
+                component = (GameCaseComponent) tmp;
+                found = true;
+            }
+        }
+
+        return component;
+    }
+
     public InputCaseComponent getInputComponent() {
 
         InputCaseComponent component = null;

@@ -30,8 +30,4 @@ public class Pawn extends Entity {
         return this.parentCase;
     }
 
-    public GraphicCaseComponent getGraphicComponent(Pawn pawn)
-    {
-        pawn.getComponents();
-    }
 }
