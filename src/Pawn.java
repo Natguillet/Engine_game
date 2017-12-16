@@ -1,6 +1,9 @@
 public class Pawn extends Entity {
 
-    public Pawn(String name) {
+    int playerID;
+
+    public Pawn(String name, int playerID) {
         super(name);
+        this.playerID = playerID;
     }
 }

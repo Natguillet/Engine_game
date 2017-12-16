@@ -1,9 +1,9 @@
-import javafx.event.EventHandler;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 
-import java.awt.event.MouseEvent;
+import java.util.Iterator;
+
 
 public class GraphicCaseComponent extends Component implements IGraphicComponent {
 
@@ -26,6 +26,8 @@ public class GraphicCaseComponent extends Component implements IGraphicComponent
         caseBack.setWidth(caseWidth);
         caseBack.setHeight(caseHeight);
         caseBack.setFill(color);
+        caseBack.setStroke(Color.BLACK);
+        caseBack.setStrokeWidth(4);
 
         caseBack.setX(posX);
         caseBack.setY(posY);
@@ -33,7 +35,17 @@ public class GraphicCaseComponent extends Component implements IGraphicComponent
 
     @Override
     public void onClick() {
+        // test
         caseBack.setFill(Color.RED);
+        //caseBack.setFill(color);
+
+        Iterator<Component> componentIt = this.entity.getComponents().iterator();
+        while(componentIt.hasNext()) {
+            Component tmp = componentIt.next();
+            if(tmp instanceof InputCaseComponent) {
+                ((InputCaseComponent) tmp).Click();
+            }
+        }
     }
 
     @Override
@@ -41,14 +53,20 @@ public class GraphicCaseComponent extends Component implements IGraphicComponent
         return caseBack;
     }
 
-    public void appuyer(){
-        caseBack.setFill(Color.RED);
-        //ajout d'un pion
-
+    public int getCaseHeight() {
+        return caseHeight;
     }
 
-    public void relacher(){
-        caseBack.setFill(Color.GREY);
+    public int getCaseWidth() {
+        return caseWidth;
+    }
+
+    public int getPosX() {
+        return posX;
+    }
+
+    public int getPosY() {
+        return posY;
     }
 
     public void ChangeOrigin(int x , int y){
