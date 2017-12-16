@@ -5,4 +5,11 @@ public interface IGraphicComponent {
     default void onClick() {
         System.out.println("Default click");
     };
+
+
+
+    default void onClickRelease(){
+        //do nothing
+    };
+
 }

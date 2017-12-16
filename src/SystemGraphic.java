@@ -27,6 +27,13 @@ public class SystemGraphic implements ISystem{
                             ((IGraphicComponent) component).onClick();
                         }
                     });
+
+                    ((IGraphicComponent) component).getFigure().setOnMouseReleased(new EventHandler<MouseEvent>(){
+                        public void handle(MouseEvent me){
+                            ((IGraphicComponent) component).onClickRelease();
+                        }
+                    });
+
                     stack.getChildren().add(((IGraphicComponent) component).getFigure());
                 }
             }

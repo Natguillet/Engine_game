@@ -61,9 +61,14 @@ public class Main extends Application{
             posX += caseWidth;
         }
 
+        //Add players
+        PlayerManager playerManager = new PlayerManager("playerManager");
+        PlayerComponent Player1 = new PlayerComponent(playerManager, Color.BLUE);
+        PlayerComponent Player2 = new PlayerComponent(playerManager, Color.GREEN);
+
         SystemLogic systemLogic = new SystemLogic();
         SystemGraphic systemGraphic = new SystemGraphic();
-        SystemInput systemInput = new SystemInput(2); // number of players to be handled by the logic system
+        SystemInput systemInput = new SystemInput(playerManager.componentNumber()); // number of players to be handled by the logic system
 
         ISystem[] systems = {systemLogic, systemGraphic, systemInput};
 
