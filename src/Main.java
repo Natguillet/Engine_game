@@ -50,9 +50,17 @@ public class Main extends Application{
                 aCase.getComponents().add(new GraphicCaseComponent(aCase, posX, posY,caseHeight,caseWidth));
                 aCase.getComponents().add(new InputCaseComponent(aCase));
                 entities.add(aCase);
-                posY = posY + caseHeight;
+
+                // instantiate the pawn
+                Pawn aPawn = new Pawn("pawn_" + i + "_" + j, aCase);
+                aPawn.getComponents().add(new GraphicPawnComponent(aPawn, aCase.getPosX() + aCase.getHeight() / 2, aCase.getPosY() + aCase.getWidth() / 2, aCase.getCaseMinDimension() / 2 - 1, Color.TRANSPARENT));
+                // TO DO: InputPawnComponent?
+                aCase.getChildren().add(aPawn);
+                entities.add(aPawn);
+
+                posY += caseHeight;
             }
-            posX = posX + caseWidth;
+            posX += caseWidth;
         }
 
         // Instantiate GameOver

@@ -15,33 +15,29 @@ public class SystemInput implements ISystem {
 
     @Override
     public void iterate(List<Entity> entities) {
-        ArrayList<Entity> entitiesToAdd = new ArrayList<Entity>();
         for (Entity entity: entities) {
             for (Component component: entity.getComponents()) {
                 if(component instanceof IInputComponent){
                     if(((IInputComponent) component).isClicked()) {
                         if(entity instanceof Case) {
-                            if(!((Case) entity).hasPawn()) {
-                                Color playerPawnColor = Color.DARKBLUE; // TO DO: get current player's pawn color
-                                Pawn aPawn = new Pawn("pawn_" + currentPlayer, currentPlayer);
-                                aPawn.getComponents().add(new GraphicPawnComponent(aPawn, ((Case) entity).getPosX() + ((Case) entity).getHeight() / 2, ((Case) entity).getPosY() + ((Case) entity).getWidth() / 2, ((Case) entity).getCaseMinDimension() / 2 - 1, playerPawnColor));
-                                // TO DO: InputPawnComponent?
-                                ((Case) entity).addPawn(currentPlayer);
-                                entitiesToAdd.add(aPawn);
-                            }
+                            ((Case) entity).getGraphicComponent().ChangeColor(getPlayerPawnColor());
                         }
-                    }
-                    if(((IInputComponent) component).isDragged()) {
-                        // TO DO WHEN USER DRAG ON ENTITY
                     }
                 }
             }
         }
-        entities.addAll(entitiesToAdd);
 
-        if(currentPlayer < nbPlayers - 2)
+        // update the current player
+        if(currentPlayer < nbPlayers - 1)
             currentPlayer++;
         else
             currentPlayer = 0;
+    }
+
+    public Color getPlayerPawnColor() {
+
+        // TO DO when player entity implemented: get current player's pawn color from entities
+
+        return Color.DARKBLUE;
     }
 }
