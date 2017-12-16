@@ -2,15 +2,15 @@ import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Main extends Application{
+
+    List<Entity> entities;
 
     public static void main(String[] args) {
         launch(args);
@@ -26,15 +26,15 @@ public class Main extends Application{
 
         final long startNanoTome = System.nanoTime();
 
-        List<Entity> entities = new ArrayList<>();
+        entities = new ArrayList<>();
 
-        // Instantiate Entity Board and this component
+        // Instantiate Entity Board and his graphic component
         Board board = new Board("board");
         GraphicBoardComponent graphicBoardComponent = new GraphicBoardComponent(board, 600,600);
         graphicBoardComponent.ChangeColor(Color.BLUE);
         board.getComponents().add(graphicBoardComponent);
         entities.add(board);
-
+        
         //Instantiate GameController
 
         GameController gameController = new GameController("game controller");
@@ -42,7 +42,7 @@ public class Main extends Application{
         gameController.getComponents().add(gameControllerComponent);
         entities.add(gameController);
 
-        // Instantiate Cases
+        // Instantiate Cases and their graphic components
         int nbCaseX = 3;
         int nbCaseY = 3;
         int caseHeight = 600/nbCaseY;
@@ -51,18 +51,35 @@ public class Main extends Application{
         for(int i = 0; i < nbCaseX; i++){
             int posY = 50;
             for(int j = 0; j < nbCaseY; j++){
-                Case aCase = new Case("case" + i);
+                Case aCase = new Case("case_" + i + "_" + j, i, j);
                 aCase.getComponents().add(new GraphicCaseComponent(aCase, posX, posY,caseHeight,caseWidth));
+                aCase.getComponents().add(new InputCaseComponent(aCase));
                 entities.add(aCase);
-                posY = posY + caseHeight;
+
+                // instantiate the pawn
+                Pawn aPawn = new Pawn("pawn_" + i + "_" + j, aCase);
+                aPawn.getComponents().add(new GraphicPawnComponent(aPawn, aCase.getPosX() + aCase.getHeight() / 2, aCase.getPosY() + aCase.getWidth() / 2, aCase.getCaseMinDimension() / 2 - 1, Color.TRANSPARENT));
+                // TO DO: InputPawnComponent?
+                aCase.getChildren().add(aPawn);
+                entities.add(aPawn);
+
+                posY += caseHeight;
             }
-            posX = posX + caseWidth;
+            posX += caseWidth;
         }
 
-        SystemGraphic systemGraphic = new SystemGraphic();
-        ISystem[] systems = {new SystemLogic(), systemGraphic};
+        //Add players
+        PlayerManager playerManager = new PlayerManager("playerManager");
+        PlayerComponent Player1 = new PlayerComponent(playerManager, Color.BLUE);
+        PlayerComponent Player2 = new PlayerComponent(playerManager, Color.GREEN);
 
-        // Intialize all graphic component
+        SystemLogic systemLogic = new SystemLogic();
+        SystemGraphic systemGraphic = new SystemGraphic();
+        SystemInput systemInput = new SystemInput(playerManager.componentNumber()); // number of players to be handled by the logic system
+
+        ISystem[] systems = {systemLogic, systemGraphic, systemInput};
+
+        // Initialize all graphic components
         root.getChildren().addAll(systemGraphic.init(entities).getChildren());
 
         new AnimationTimer()

@@ -4,4 +4,8 @@ abstract class Component {
     public Component(Entity entity) {
         this.entity = entity;
     }
+
+    public Entity getEntity() {
+        return entity;
+    }
 }
