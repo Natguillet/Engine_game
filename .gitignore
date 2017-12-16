@@ -1,9 +1,2 @@
-
-# Compiled class files and folder
-out
-*.class
-
-.idea/workspace.xml
-
 # Mac files
 .DS_Store
