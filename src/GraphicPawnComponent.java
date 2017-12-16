@@ -45,4 +45,16 @@ public class GraphicPawnComponent extends Component implements IGraphicComponent
     public Shape getFigure() {
         return pawnShape;
     }
+
+    @Override
+    public void onClick() {
+        System.out.println("Pawn click");
+        // if the pawn is not visible, i.e. not placed by a player
+        if(color == Color.TRANSPARENT) {
+            ((Pawn) entity).getParentCase().getGraphicComponent().onClick();
+        }
+        else {
+            // TO DO: click on placed pawn?
+        }
+    }
 }
