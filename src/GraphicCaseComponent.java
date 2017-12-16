@@ -36,14 +36,14 @@ public class GraphicCaseComponent extends Component implements IGraphicComponent
     @Override
     public void onClick() {
         System.out.println("Case click");
-        caseBack.setFill(Color.RED);
+        //caseBack.setFill(Color.RED);
 
         ((Case) entity).getInputComponent().Click();
     }
 
     @Override
     public void onClickRelease(){
-        caseBack.setFill(Color.WHITE);
+        //caseBack.setFill(Color.WHITE);
     }
 
 
