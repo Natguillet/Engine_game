@@ -38,7 +38,7 @@ public class GraphicCaseComponent extends Component implements IGraphicComponent
         System.out.println("Case click");
         caseBack.setFill(Color.RED);
 
-        ((Case) entity).getCaseInputComponent().Click();
+        ((Case) entity).getInputComponent().Click();
     }
 
 
