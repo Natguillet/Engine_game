@@ -12,6 +12,8 @@ import java.util.List;
 
 public class Main extends Application{
 
+    List<Entity> entities;
+
     public static void main(String[] args) {
         launch(args);
     }
@@ -35,7 +37,7 @@ public class Main extends Application{
         board.getComponents().add(graphicBoardComponent);
         entities.add(board);
 
-        // Instantiate Cases
+        // Instantiate Cases and their graphic components
         int nbCaseX = 3;
         int nbCaseY = 3;
         int caseHeight = 600/nbCaseY;
@@ -44,8 +46,9 @@ public class Main extends Application{
         for(int i = 0; i < nbCaseX; i++){
             int posY = 50;
             for(int j = 0; j < nbCaseY; j++){
-                Case aCase = new Case("case" + i);
+                Case aCase = new Case("case_" + i + "_" + j, i, j);
                 aCase.getComponents().add(new GraphicCaseComponent(aCase, posX, posY,caseHeight,caseWidth));
+                aCase.getComponents().add(new InputCaseComponent(aCase));
                 entities.add(aCase);
                 posY = posY + caseHeight;
             }
@@ -56,10 +59,18 @@ public class Main extends Application{
         GameOver gameOver = new GameOver("game over");
         gameOver.getComponents().add(new GraphicGameOverComponent(gameOver, 350,350,200,700));
 
-        SystemGraphic systemGraphic = new SystemGraphic();
-        ISystem[] systems = {new SystemLogic(), systemGraphic};
+        //Add players
+        PlayerManager playerManager = new PlayerManager("playerManager");
+        PlayerComponent Player1 = new PlayerComponent(playerManager, Color.BLUE);
+        PlayerComponent Player2 = new PlayerComponent(playerManager, Color.GREEN);
 
-        // Intialize all graphic component
+        SystemLogic systemLogic = new SystemLogic();
+        SystemGraphic systemGraphic = new SystemGraphic();
+        SystemInput systemInput = new SystemInput(playerManager.componentNumber()); // number of players to be handled by the logic system
+
+        ISystem[] systems = {systemLogic, systemGraphic, systemInput};
+
+        // Initialize all graphic components
         root.getChildren().addAll(systemGraphic.init(entities).getChildren());
 
         new AnimationTimer()

@@ -1,5 +1,3 @@
-import javafx.scene.layout.StackPane;
-
 import java.util.List;
 
 public interface ISystem {
