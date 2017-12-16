@@ -8,6 +8,12 @@ public class Board extends Entity {
 
     public GraphicBoardComponent getGraphicComponent() {
 
+        for(Component it : getComponents()) {
+            if(it instanceof GraphicBoardComponent) {
+                return (GraphicBoardComponent) it;
+            }
+        }
+        /*
         GraphicBoardComponent component = null;
         boolean found = false;
         Iterator<Component> componentIt = getComponents().iterator();
@@ -19,7 +25,8 @@ public class Board extends Entity {
                 found = true;
             }
         }
+        return component; */
 
-        return component;
+        return null;
     }
 }

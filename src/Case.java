@@ -13,6 +13,13 @@ public class Case extends Entity {
 
     public GraphicCaseComponent getGraphicComponent() {
 
+        for(Component it : getComponents()) {
+            if(it instanceof GraphicCaseComponent) {
+                return (GraphicCaseComponent) it;
+            }
+        }
+
+        /*
         GraphicCaseComponent component = null;
         boolean found = false;
         Iterator<Component> componentIt = getComponents().iterator();
@@ -26,10 +33,35 @@ public class Case extends Entity {
         }
 
         return component;
+        */
+        return null;
+    }
+
+    public GameCaseComponent getLogicComponent() {
+
+        GameCaseComponent component = null;
+        boolean found = false;
+        Iterator<Component> componentIt = getComponents().iterator();
+
+        while(componentIt.hasNext() && !found) {
+            Component tmp = componentIt.next();
+            if(tmp instanceof GameCaseComponent) {
+                component = (GameCaseComponent) tmp;
+                found = true;
+            }
+        }
+
+        return component;
     }
 
     public InputCaseComponent getInputComponent() {
 
+        for(Component it : getComponents()) {
+            if(it instanceof InputCaseComponent) {
+                return (InputCaseComponent) it;
+            }
+        }
+        /*
         InputCaseComponent component = null;
         boolean found = false;
         Iterator<Component> componentIt = getComponents().iterator();
@@ -42,11 +74,18 @@ public class Case extends Entity {
             }
         }
 
-        return component;
+        return component; */
+        return null;
     }
 
     public Pawn getPawn() {
 
+        for(Entity it : getChildren()) {
+            if(it instanceof Pawn) {
+                return (Pawn) it;
+            }
+        }
+        /*
         Pawn pawn = null;
         boolean found = false;
         Iterator<Entity> entityIt = getChildren().iterator();
@@ -60,6 +99,8 @@ public class Case extends Entity {
         }
 
         return pawn;
+        */
+        return null;
     }
 
     public int getHeight() {

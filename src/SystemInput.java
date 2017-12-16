@@ -5,12 +5,10 @@ import javafx.scene.paint.Color;
 
 public class SystemInput implements ISystem {
 
-    int nbPlayers;
-    int currentPlayer;
+    GameController gameController;
 
-    public SystemInput(int nbPlayers) {
-        this.nbPlayers = nbPlayers;
-        this.currentPlayer = 0;
+    public SystemInput(GameController gameController) {
+        this.gameController = gameController;
     }
 
     @Override
@@ -20,24 +18,11 @@ public class SystemInput implements ISystem {
                 if(component instanceof IInputComponent){
                     if(((IInputComponent) component).isClicked()) {
                         if(entity instanceof Case) {
-                            ((Case) entity).getPawn().getGraphicComponent().ChangeColor(getPlayerPawnColor());
+                            ((Case) entity).getPawn().getGraphicComponent().ChangeColor(gameController.getLogicComponent().playerSide);
                         }
                     }
                 }
             }
         }
-
-        // update the current player
-        if(currentPlayer < nbPlayers - 1)
-            currentPlayer++;
-        else
-            currentPlayer = 0;
-    }
-
-    public Color getPlayerPawnColor() {
-
-        // TO DO when player entity implemented: get current player's pawn color from entities
-
-        return Color.DARKBLUE;
     }
 }

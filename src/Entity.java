@@ -21,5 +21,8 @@ public class Entity {
         return components;
     }
 
+    public String getName() {
+        return name;
+    }
 }
 

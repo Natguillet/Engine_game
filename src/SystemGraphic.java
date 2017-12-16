@@ -1,6 +1,8 @@
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
+import javafx.scene.text.Text;
+
 import java.util.List;
 
 public class SystemGraphic implements ISystem{
@@ -19,6 +21,7 @@ public class SystemGraphic implements ISystem{
 
     public StackPane init(List<Entity> entites) {
         StackPane stack = new StackPane();
+        Text txt = new Text("test");
         for (Entity entity: entites) {
             for (Component component: entity.getComponents()) {
                 if(component instanceof IGraphicComponent){
@@ -34,7 +37,11 @@ public class SystemGraphic implements ISystem{
                         }
                     });
 
-                    stack.getChildren().add(((IGraphicComponent) component).getFigure());
+
+                        stack.getChildren().add(((IGraphicComponent) component).getFigure());
+                        stack.getChildren().add(((IGraphicComponent) component).getText());
+
+
                 }
             }
         }
